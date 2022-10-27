@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+</head>
+
+<body>
+    <!-- navigation section -->
+    <header>
+        <a class="logo" href="">
+            <h2>App Name</h2>
+        </a>
+        <nav>
+            <ul class="nav_links">
+                {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <!-- <li><a href="{{ url_for('protected') }}">Protected</a></li> -->
+                <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                {% else %}
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('register') }}">Sign Up</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <section>
+
+    </section>
+    <footer>
+        <p class="footer">
+            &copy; AppName
+            <script>
+                document.write(new Date().getFullYear());
+            </script>
+        </p>
+    </footer>
+
+</body>
+
+</html>

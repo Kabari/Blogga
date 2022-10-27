@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+<section class="login_section">
+    <div class="login-container">
+        <h1>Login</h1>
+        <form action="{{ url_for('login') }}" method="POST">
+
+            <div class="text_field">
+                <input type="text" name="username" required>
+                <span></span>
+                <label for="Username">Username</label>
+            </div>
+            <div class="text_field">
+                <input type="password" name="password" required>
+                <span></span>
+                <label for="Password">Password</label>
+            </div>
+            <div class="pass">Forgot Password?</div>
+
+            <input type="submit" value="Login">
+
+            <div class="login_link">
+                Don't have an account? <a href="{{ url_for('register') }}">Create Account</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
