@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Post
+{% endblock %}
+
+{% block content %}
+<div class="post-hero">
+    <div class="post-container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="post-heading">
+                    <h1>{{post.caption}}</h1>
+                    <h2 class="subheading">Problems look mighty small from 150 miles up</h2>
+                    <span class="meta">
+                        Posted by
+                        {{ post.owner.username }}
+                        on {{post.date_created}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Post Content-->
+<article class="article-section">
+    <div class="article-container">
+        <div class="article-row">
+            <div class="article-content">
+                <p>{{post.content}}</p>
+            </div>
+        </div>
+    </div>
+</article>
+{% endblock %}

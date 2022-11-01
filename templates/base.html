@@ -16,31 +16,32 @@
     <!-- navigation section -->
     <header>
         <a class="logo" href="">
-            <h2>App Name</h2>
+            <h2>Blogga</h2>
         </a>
         <nav>
             <ul class="nav_links">
                 {% if current_user.is_authenticated %}
-                <li><a href="{{ url_for('index') }}">Home</a></li>
-                <!-- <li><a href="{{ url_for('protected') }}">Protected</a></li> -->
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('create_post') }}">Create Post</a></li>
                 <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                <li><a href="{{ url_for('logout') }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 {% else %}
-                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('register') }}">Sign Up</a></li>
                 <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('login') }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 {% endif %}
             </ul>
         </nav>
     </header>
 
-    <main class="container">
+    <main>
         {% block content %}
         {% endblock %}
     </main>
 
-    <section>
-
-    </section>
     <footer>
         <p class="footer">
             &copy; AppName

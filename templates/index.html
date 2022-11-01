@@ -1,6 +1,37 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Blogga
+Blogga
+{% endblock %}
+
+{% block content %}
+{% for post in posts %}
+
+<section class="blog-container">
+        <div>
+            <!-- Post preview-->
+            <div class="post-preview">
+                <a href="{{url_for('view_post', id=post.id)}}">
+                    <h2 class="post-title">{{post.caption}}</h2>
+                    <h3 class="post-subtitle">Problems look mighty small from 150 miles up, Problems look mighty small from 150 miles up</h3>
+                </a>
+                <p class="post-meta">
+                    Posted by
+                    <a href="#!">{{ post.owner.username }}</a>
+                    on {{post.date_created}}
+                </p>
+            </div>
+            <!-- Divider-->
+            <hr class="my-4" />
+            
+        </div>
+</section>
+
+{% endfor %}
+
+
+
+
+
 {% endblock %}
 
