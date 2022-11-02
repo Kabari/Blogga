@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <script src="https://kit.fontawesome.com/5d9d923648.js" crossorigin="anonymous"></script>
     <title>
         {% block title %}
         {% endblock %}
@@ -15,9 +16,16 @@
 <body>
     <!-- navigation section -->
     <header>
-        <a class="logo" href="">
-            <h2>Blogga</h2>
-        </a>
+        {% if current_user.is_authenticated %}
+            <a class="logo" href="{{url_for('home')}}">
+                <h2>Blogga &#124;</h2>
+                <p>Hello {{current_user.username}}</p>
+            </a>
+        {% else %}
+            <a class="logo" href="{{url_for('home')}}">
+                <h2>Blogga &#124;</h2>
+            </a>
+        {% endif %}
         <nav>
             <ul class="nav_links">
                 {% if current_user.is_authenticated %}
@@ -42,6 +50,39 @@
         {% endblock %}
     </main>
 
+    <footer class="footer-border-top">
+        <div class="footer-container">
+            <div class="row footer-row">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <ul class="footer-list-inline">
+                        <li class="footer-list-inline-item">
+                            <a href="https://www.linkedin.com/in/kabari-emmanuel/" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="footer-list-inline-item">
+                            <a href="https://www.facebook.com/emmanuel.kabari.56/" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fab fa-facebook"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="footer-list-inline-item">
+                            <a href="https://github.com/Kabari" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fab fa-github"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="small text-center text-muted fst-italic">Copyright &copy; Emmanuel Kabari. 2022</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+<!-- 
     <footer>
         <p class="footer">
             &copy; AppName
@@ -49,7 +90,7 @@
                 document.write(new Date().getFullYear());
             </script>
         </p>
-    </footer>
+    </footer> -->
 
 </body>
 

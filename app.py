@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, current_user, login_user, logout_user, login_required
-from datetime import date, datetime
+from datetime import datetime
 import os
 
 base_dir = os.path.dirname(os.path.realpath(__file__))
@@ -42,7 +42,7 @@ class BlogPost(db.Model):
     content = db.Column(db.String(), nullable=False)
     owner_id = db.Column(db.Integer(), db.ForeignKey(
         'users.id'), nullable=False)
-    date_created = db.Column(db.DateTime(), default=date.month)
+    date_created = db.Column(db.DateTime(), default=datetime.utcnow)
 
     def __repr__(self):
         return f"BlogPost <{self.caption}, {self.content}, {self.date_created}, {self.owner_id}>"
@@ -59,9 +59,6 @@ def home():
     posts = BlogPost.query.all()
 
     return render_template('index.html', posts=posts)
-
-# @app.route('/')
-# def get_all_posts():
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -117,10 +114,6 @@ def logout():
 @app.route('/create', methods=['GET', 'POST'])
 @login_required
 def create_post():
-    # username = request.form.get('username')
-    # email = request.form.get('email')
-    # age = request.form.get('age')
-    # gender = request.form.get('gender')
     if request.method == 'POST':
         caption = request.form.get('caption')
         content = request.form.get('content')
@@ -136,11 +129,10 @@ def create_post():
     return render_template('create.html')
 
 
-@app.route('/blogposts/post/<int:id>/edit_post', methods=['GET', 'POST'])
+@app.route('/blogposts/post/edit_post/<int:id>/', methods=['GET', 'POST'])
 @login_required
 def edit_post(id):
     post_to_edit = BlogPost.query.get_or_404(id)
-    # post =
 
     if request.method == 'POST':
         post_to_edit.caption = request.form.get('caption')
@@ -172,6 +164,20 @@ def view_post(id):
 def contact():
 
     return render_template('contact.html')
+
+
+@app.route('/blogposts/post/delete/<int:id>/')
+@login_required
+def delete_post(id):
+    post_to_delete = BlogPost.query.get_or_404(id)
+    if current_user.id == post_to_delete.owner_id:
+        db.session.delete(post_to_delete)
+        db.session.commit()
+        return redirect(url_for('home'))
+    else:
+        post = BlogPost.query.get_or_404(id)
+
+        return render_template('post.html', post=post)
 
 
 if __name__ == '__main__':
