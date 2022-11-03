@@ -30,16 +30,16 @@
             <ul class="nav_links">
                 {% if current_user.is_authenticated %}
                 <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 <li><a href="{{ url_for('create_post') }}">Create Post</a></li>
                 <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-                <li><a href="{{ url_for('logout') }}">About</a></li>
-                <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 {% else %}
                 <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 <li><a href="{{ url_for('register') }}">Sign Up</a></li>
                 <li><a href="{{ url_for('login') }}">Login</a></li>
-                <li><a href="{{ url_for('login') }}">About</a></li>
-                <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 {% endif %}
             </ul>
         </nav>
@@ -77,20 +77,11 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="small text-center text-muted fst-italic">Copyright &copy; Emmanuel Kabari. 2022</div>
+                    <div class="small">Copyright &copy; Emmanuel Kabari, AltSchool Africa. 2022</div>
                 </div>
             </div>
         </div>
     </footer>
-<!-- 
-    <footer>
-        <p class="footer">
-            &copy; AppName
-            <script>
-                document.write(new Date().getFullYear());
-            </script>
-        </p>
-    </footer> -->
 
 </body>
 

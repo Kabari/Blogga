@@ -160,12 +160,6 @@ def view_post(id):
     return render_template('post.html', post=post)
 
 
-@app.route('/contact')
-def contact():
-
-    return render_template('contact.html')
-
-
 @app.route('/blogposts/post/delete/<int:id>/')
 @login_required
 def delete_post(id):
@@ -178,6 +172,18 @@ def delete_post(id):
         post = BlogPost.query.get_or_404(id)
 
         return render_template('post.html', post=post)
+
+
+@app.route('/contact')
+def contact():
+
+    return render_template('contact.html')
+
+
+@app.route('/about')
+def about():
+
+    return render_template('about.html')
 
 
 if __name__ == '__main__':
