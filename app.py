@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import desc
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, current_user, login_user, logout_user, login_required
 from datetime import datetime
@@ -56,7 +57,7 @@ def user_loader(id):
 @app.route('/')
 @app.route('/blogposts')
 def home():
-    posts = BlogPost.query.all()
+    posts = BlogPost.query.order_by(desc(BlogPost.date_created))
 
     return render_template('index.html', posts=posts)
 
@@ -67,10 +68,14 @@ def login():
     password = request.form.get('password')
 
     user = User.query.filter_by(username=username).first()
-
     if user and check_password_hash(user.password_hash, password):
         login_user(user)
+        flash("Login successful")
         return redirect(url_for('home'))
+    elif user == None and password == None:
+        flash('Enter your login credentials')
+    else:
+        flash("User credentials not correct!!")
 
     return render_template('login.html')
 
@@ -86,14 +91,22 @@ def register():
         confirm = request.form.get('confirm')
 
         user = User.query.filter_by(username=username).first()
-        if user:
-            return redirect(url_for('register'))
-
         email_exists = User.query.filter_by(email=email).first()
-        if email_exists:
-            return redirect(url_for('register'))
 
         password_hash = generate_password_hash(password)
+
+        if user:
+            flash("Username already used, try another username")
+            return redirect(url_for('register'))
+
+        elif email_exists:
+            flash("Email already exists, try using another email")
+            return redirect(url_for('register'))
+
+        elif confirm != password:
+            flash(
+                "Confirm password is not correct, make sure the confirm password is the same with the password")
+            return redirect(url_for('register'))
 
         new_user = User(firstname=firstname, lastname=lastname, username=username, email=email,
                         password_hash=password_hash)
@@ -124,6 +137,8 @@ def create_post():
         db.session.add(new_post)
         db.session.commit()
 
+        flash("Post Created successfully!!!")
+
         return redirect(url_for('home'))
 
     return render_template('create.html')
@@ -140,6 +155,8 @@ def edit_post(id):
 
         db.session.add(post_to_edit)
         db.session.commit()
+
+        flash("Post Updated!")
         return redirect(url_for('view_post', id=id))
 
     if current_user.id == post_to_edit.owner_id:
@@ -148,6 +165,7 @@ def edit_post(id):
         return render_template('edit_post.html', post=post_to_edit)
 
     else:
+        flash("You do not have the previledge to edit this post")
         post = BlogPost.query.get_or_404(id)
 
         return render_template('post.html', post=post)
@@ -167,8 +185,12 @@ def delete_post(id):
     if current_user.id == post_to_delete.owner_id:
         db.session.delete(post_to_delete)
         db.session.commit()
+
+        flash("Post deleted successfully")
+
         return redirect(url_for('home'))
     else:
+        flash("You cannot delete this post!!!")
         post = BlogPost.query.get_or_404(id)
 
         return render_template('post.html', post=post)

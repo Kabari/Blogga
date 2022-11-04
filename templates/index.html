@@ -5,26 +5,39 @@ Blogga
 {% endblock %}
 
 {% block content %}
+
+{% for message in get_flashed_messages() %}
+<div class="alert">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    {{ message }}
+</div>
+{% endfor %}
+
+
+<section class="blog-head-container">
+    <div class="blog-head-title">
+        <h1>Blog Posts</h1>
+    </div>
+</section>
 {% for post in posts %}
 
 <section class="blog-container">
-        <div>
-            <!-- Post preview-->
-            <div class="post-preview">
-                <a class="link" href="{{url_for('view_post', id=post.id)}}">
-                    <h2 class="post-title">{{post.caption}}</h2>
-                    <h3 class="post-subtitle">Problems look mighty small from 150 miles up, Problems look mighty small from 150 miles up</h3>
-                </a>
-                <p class="post-meta">
-                    Posted by
-                    <strong>{{ post.owner.username }}</strong>
-                    on {{post.date_created}}
-                </p>
-            </div>
-            <!-- Divider-->
-            <hr class="my-4" />
-            
+    <div>
+        <!-- Post preview-->
+        <div class="post-preview">
+            <a class="link" href="{{url_for('view_post', id=post.id)}}">
+                <h1 class="post-title">{{post.caption}}</h1>
+            </a>
+            <p class="post-meta">
+                Posted by
+                <strong>{{ post.owner.username }}</strong>
+                on {{post.date_created.strftime('%d %B, %Y')}}
+            </p>
         </div>
+        <!-- Divider-->
+        <hr class="my-4" />
+
+    </div>
 </section>
 
 {% endfor %}
@@ -34,4 +47,3 @@ Blogga
 
 
 {% endblock %}
-

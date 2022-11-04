@@ -1,17 +1,24 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Post
+Post
 {% endblock %}
 
 {% block content %}
+
+{% for message in get_flashed_messages() %}
+<div class="alert">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    {{ message }}
+</div>
+{% endfor %}
+
 <div class="post-hero">
     <div class="post-container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="col">
                 <div class="post-heading">
                     <h1>{{post.caption}}</h1>
-                    <h2 class="subheading">Problems look mighty small from 150 miles up</h2>
                     <span class="meta">
                         Posted by
                         {{ post.owner.username }}
@@ -32,12 +39,16 @@
         </div>
     </div>
 </article>
-<div class="btn-group">
-    <div class="button">
-        <a href="{{url_for('edit_post', id=post.id)}}"><input class="message-btn" id="message-btn" type="submit" value="Edit"></a>
+{% if post.owner_id == current_user.id %}
+    <div class="btn-group">
+        <div class="button">
+            <a href="{{url_for('edit_post', id=post.id)}}"><input class="message-btn" id="message-btn" type="submit"
+                    value="Edit"></a>
+        </div>
+        <div class="button">
+            <a href="{{url_for('delete_post', id=post.id)}}"><input class="message-btn" id="message-btn" type="submit"
+                    value="Delete"></a>
+        </div>
     </div>
-    <div class="button">
-        <a href="{{url_for('delete_post', id=post.id)}}"><input class="message-btn" id="message-btn" type="submit" value="Delete"></a>
-    </div>
-</div>
+{% endif %}
 {% endblock %}

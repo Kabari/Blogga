@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
     <script src="https://kit.fontawesome.com/5d9d923648.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script>
+
+
     <title>
         {% block title %}
         {% endblock %}
@@ -30,9 +33,9 @@
             <ul class="nav_links">
                 {% if current_user.is_authenticated %}
                 <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('create_post') }}">Create Post</a></li>
                 <li><a href="{{ url_for('about') }}">About</a></li>
                 <li><a href="{{ url_for('contact') }}">Contact</a></li>
-                <li><a href="{{ url_for('create_post') }}">Create Post</a></li>
                 <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                 {% else %}
                 <li><a href="{{ url_for('home') }}">Home</a></li>
@@ -82,6 +85,10 @@
             </div>
         </div>
     </footer>
+    <!-- <script>
+        CKEDITOR.replace('content');
+        CKEDITOR.replace('caption');
+    </script> -->
 
 </body>
 

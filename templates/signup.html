@@ -5,6 +5,14 @@ Sign Up
 {% endblock %}
 
 {% block content %}
+
+{% for message in get_flashed_messages() %}
+<div class="alert">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    {{ message }}
+</div>
+{% endfor %}
+
 <section class="signup_section">
     <div class="signup-container">
         <h1>Sign Up</h1>

@@ -16,12 +16,6 @@ font-family: 'Raleway', sans-serif;
 
 /* Global config end*/
 
-/* Body config */
-body {
-    background: #0087a8;
-}
-
-/* Body config end */
 
 /* navigation config start */
 li,
@@ -76,11 +70,41 @@ header {
 
 /* navigation config end */
 
+/* alert config */
+/* The alert message box */
+.alert {
+    width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #2691d9;
+    /* Red */
+    color: white;
+    margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}
+/* alert config end */
+
 
 /* login config start */
 *~.login_section,
 *~.signup_section {
-    background: #0087a8;
+    /* background: #0087a8; */
     font-family: 'Raleway', sans-serif;
 }
 
@@ -90,7 +114,7 @@ header {
     width: 400px;
     background: #e9f4fb;
     border-radius: 10px;
-    box-shadow: 20px 20px 50px #24252A;
+    box-shadow: 10px 10px 50px #24252A;
 }
 
 .signup-container {
@@ -218,6 +242,7 @@ input[type="submit"]:hover {
 
 .row {
     display: flex;
+    margin-bottom: 10px;
     flex-wrap: wrap;
 }
 
@@ -225,6 +250,7 @@ input[type="submit"]:hover {
     width: 1140px;
     margin: auto;
     min-height: 100vh;
+    /* background: #2691d9; */
     font-family: 'Raleway', sans-serif;
 }
 
@@ -264,6 +290,7 @@ input[type="submit"]:hover {
     font-weight: 600;
     margin: 15px 0 10px;
     text-transform: capitalize;
+    color: black;
 }
 
 .contact-section .contact-item-inner p {
@@ -271,6 +298,7 @@ input[type="submit"]:hover {
     line-height: 26px;
     margin: 0;
     word-wrap: break-word;
+    color: black;
 }
 
 .contact-section .contact-form {
@@ -343,23 +371,46 @@ input[class="btn-1"]:hover {
 
 /* Blog config */
 
+.blog-head-container {
+    display: flex;
+    width: 800px;
+    margin: 50px auto;
+}
+
+.blog-head-title {
+    margin: auto;
+    display: flex;
+}
+
+.blog-head-title h1 {
+    font-size: 50px;
+}
+
 .link {
-    text-decoration: yellow;
+    color: black;
+}
+
+.link:hover {
+    color: #0088a9;
 }
 
 .blog-container {
-    display: flex;
+    display: block;
     margin: auto;
-    padding: 10px;
+    padding: 20px;
     width: 800px;
     max-width: 100%;
     word-wrap: break-word;
 }
 
+.post-preview {
+    margin: auto;
+}
+
 .post-title {
     margin: 30px 0px 10px;
     font-weight: 700;
-    font-size: 40px;
+    font-size: 60px;
     word-wrap: break-word;
 }
 
@@ -371,11 +422,11 @@ input[class="btn-1"]:hover {
 
 .post-meta {
     margin: 0 0 32px;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .post-hero {
-    min-height: 80vh;
+    min-height: 50vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -384,8 +435,20 @@ input[class="btn-1"]:hover {
 }
 
 .post-container {
-    width: 800px;
-    padding: 10px;
+    display: flex;
+    text-align: center;
+    width: 900px;
+}
+
+.col {
+    margin: auto;
+}
+
+.post-heading {
+    width: 900px;
+    justify-content: center;
+    align-items: center;
+    word-wrap: break-word;
 }
 
 .post-heading h1 {
@@ -406,12 +469,15 @@ input[class="btn-1"]:hover {
 }
 
 .article-section {
+    width: 900px;
     display: flex;
     justify-content: center;
     margin: auto;
 }
 
 .article-container {
+    width: 900px;
+    word-wrap: break-word;
     font-size: 20px;
 }
 
@@ -421,6 +487,7 @@ input[class="btn-1"]:hover {
 
 .article-content {
     margin: 50px 0px;
+    text-align: center;
 
 }
 
@@ -433,7 +500,7 @@ input[class="btn-1"]:hover {
     justify-content: center;
     align-items: center;
     padding: 10px;
-    background: #0088a9;
+    /* background: #0088a9; */
     font-family: 'Raleway', sans-serif;
 }
 
@@ -527,7 +594,7 @@ input[class="message-btn"]:hover {
     transition: .5s;
 }
 
-/* create blog config end */
+/*  blog config end */
 
 /* edit and delete post button config */
 .btn-group {
@@ -535,6 +602,7 @@ input[class="message-btn"]:hover {
     height: 70px;
     display: flex;
     margin: auto;
+    margin-bottom: 20px;    
 }
 
 .button {
@@ -635,6 +703,7 @@ input[id="message-btn"] {
     margin: auto;
     width: 100%;
     height: 200px;
+    background: #24252A;
 }
 
 .footer-row {
