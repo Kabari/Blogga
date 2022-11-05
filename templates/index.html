@@ -13,34 +13,72 @@ Blogga
 </div>
 {% endfor %}
 
-
-<section class="blog-head-container">
-    <div class="blog-head-title">
-        <h1>Blog Posts</h1>
-    </div>
-</section>
-{% for post in posts %}
-
-<section class="blog-container">
-    <div>
-        <!-- Post preview-->
-        <div class="post-preview">
-            <a class="link" href="{{url_for('view_post', id=post.id)}}">
-                <h1 class="post-title">{{post.caption}}</h1>
-            </a>
-            <p class="post-meta">
-                Posted by
-                <strong>{{ post.owner.username }}</strong>
-                on {{post.date_created.strftime('%d %B, %Y')}}
-            </p>
+{% if current_user.is_authenticated %}
+    <section class="no-post">
+        <div class="no-post-title">
+            <h1>Welcome to Blogga.</h1>
+            <p><a href="{{ url_for('create_post') }}">Create a Post</a> to share your articles... </p>
         </div>
-        <!-- Divider-->
-        <hr class="my-4" />
+    </section>
 
-    </div>
-</section>
+    <section class="blog-head-container">
+        <div class="blog-head-title">
+            <h1>Blog Posts</h1>
+        </div>
+    </section>
+    {% for post in posts %}
+    
+    <section class="blog-container">
+        <div>
+            <!-- Post preview-->
+            <div class="post-preview">
+                <a class="link" href="{{url_for('view_post', id=post.id)}}">
+                    <h1 class="post-title">{{post.caption}}</h1>
+                </a>
+                <p class="post-meta">
+                    Posted by
+                    <strong>{{ post.owner.username }}</strong>
+                    on {{post.date_created.strftime('%d %B, %Y')}}
+                </p>
+            </div>
+            <!-- Divider-->
+            <hr class="my-4" />
+    
+        </div>
+    </section>
+    
+    {% endfor %}
+{% else %}
+    <section class="blog-head-container">
+        <div class="blog-head-title">
+            <h1>Blog Posts</h1>
+        </div>
+    </section>
+    {% for post in posts %}
 
-{% endfor %}
+    <section class="blog-container">
+        <div>
+            <!-- Post preview-->
+            <div class="post-preview">
+                <a class="link" href="{{url_for('view_post', id=post.id)}}">
+                    <h1 class="post-title">{{post.caption}}</h1>
+                </a>
+                <p class="post-meta">
+                    Posted by
+                    <strong>{{ post.owner.username }}</strong>
+                    on {{post.date_created.strftime('%d %B, %Y')}}
+                </p>
+            </div>
+            <!-- Divider-->
+            <hr class="my-4" />
+
+        </div>
+    </section>
+
+    {% endfor %}
+
+{% endif %}
+
 
 
 

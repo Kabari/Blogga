@@ -371,6 +371,31 @@ input[class="btn-1"]:hover {
 
 /* Blog config */
 
+.no-post {
+    display: flex;
+    /* height: 300px; */
+    width: 1000px;
+    margin: auto;
+}
+
+.no-post-title {
+    margin: auto;
+    text-align: center;
+}
+
+.no-post-title h1 {
+    margin: 5px auto;
+    font-size: 50px;
+}
+
+.no-post-title a{
+    color: #0088a9;
+}
+
+.no-post-title p {
+    font-size: 20px;
+}
+
 .blog-head-container {
     display: flex;
     width: 800px;
@@ -487,7 +512,7 @@ input[class="btn-1"]:hover {
 
 .article-content {
     margin: 50px 0px;
-    text-align: center;
+    /* text-align: center; */
 
 }
 
@@ -651,7 +676,7 @@ input[id="message-btn"] {
 }
 
 .about-section .about-item-inner {
-    text-align: center;
+    /* text-align: center; */
     border-radius: 5px;
     width: 100%;
 }
