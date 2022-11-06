@@ -49,11 +49,19 @@ class BlogPost(db.Model):
         return f"BlogPost <{self.caption}, {self.content}, {self.date_created}, {self.owner_id}>"
 
 
+# Initialize db tables on first run
+@app.before_first_request
+def create_tables():
+    db.create_all()
+
+
+# Assign current user to Login Manager
 @login_manager.user_loader
 def user_loader(id):
     return User.query.get(int(id))
 
 
+# Home page displaying all blogposts
 @app.route('/')
 @app.route('/blogposts')
 def home():
@@ -62,6 +70,7 @@ def home():
     return render_template('index.html', posts=posts)
 
 
+# login route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     username = request.form.get('username')
@@ -80,6 +89,7 @@ def login():
     return render_template('login.html')
 
 
+# register route
 @app.route('/signup', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -112,18 +122,20 @@ def register():
                         password_hash=password_hash)
         db.session.add(new_user)
         db.session.commit()
-
+        flash("Registration Successfull")
         return redirect(url_for('login'))
 
     return render_template('signup.html')
 
 
+# logout route to logout a user
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('home'))
 
 
+# create post route if a user has been authenticated
 @app.route('/create', methods=['GET', 'POST'])
 @login_required
 def create_post():
@@ -144,6 +156,7 @@ def create_post():
     return render_template('create.html')
 
 
+# edit post route, only the owner of the post can edit the post
 @app.route('/blogposts/post/edit_post/<int:id>/', methods=['GET', 'POST'])
 @login_required
 def edit_post(id):
@@ -171,6 +184,7 @@ def edit_post(id):
         return render_template('post.html', post=post)
 
 
+# single blog post view route
 @app.route('/blogposts/post/<int:id>', methods=['GET', 'POST'])
 def view_post(id):
     post = BlogPost.query.get_or_404(id)
@@ -178,6 +192,7 @@ def view_post(id):
     return render_template('post.html', post=post)
 
 
+# delet post route, only the creator of the post can delete the post
 @app.route('/blogposts/post/delete/<int:id>/')
 @login_required
 def delete_post(id):
@@ -196,14 +211,15 @@ def delete_post(id):
         return render_template('post.html', post=post)
 
 
+# Display contact page
 @app.route('/contact')
 def contact():
 
     return render_template('contact.html')
 
 
+# Display contact page
 @app.route('/about')
 def about():
 
     return render_template('about.html')
-
