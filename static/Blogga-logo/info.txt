@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: Rancho-Regular
+font link: https://fonts.google.com/specimen/Rancho
+font author: Sideshow
+font author site: http://www.fontbros.com/foundries/sideshow
+
+
+icon designer: Alfredo @ IconsAlfredo.us
+icon designer link: /AlfredoCreates
+        
+{"bg":"#29A7F1","icon":"#ffffff","font":"#ffffff","slogan":"#ffffff"}
+      
