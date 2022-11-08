@@ -132,6 +132,7 @@ def register():
 @app.route('/logout')
 def logout():
     logout_user()
+    flash("Log out successful")
     return redirect(url_for('home'))
 
 
