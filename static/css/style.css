@@ -68,6 +68,18 @@ header {
     color: #0088a9;
 }
 
+#profile-link {
+    display: flex;
+    align-items: center;
+    border: 1px solid red;
+}
+
+#dash-profile-pic {
+    border-radius: 50%;
+    width: 50px;
+    border: 1px solid red;
+    height: 50px;
+}
 /* navigation config end */
 
 /* alert config */

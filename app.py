@@ -224,3 +224,8 @@ def contact():
 def about():
 
     return render_template('about.html')
+
+# Dashboard page
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
