@@ -20,14 +20,14 @@
     <!-- navigation section -->
     <header>
         {% if current_user.is_authenticated %}
-            <a class="logo" href="{{url_for('home')}}">
-                <h2>Blogga &#124;</h2>
-                <p>Hello {{current_user.username}}</p>
-            </a>
+        <a class="logo" href="{{url_for('home')}}">
+            <h2>Blogga &#124;</h2>
+            <p>Hello {{current_user.username}}</p>
+        </a>
         {% else %}
-            <a class="logo" href="{{url_for('home')}}">
-                <h2>Blogga &#124;</h2>
-            </a>
+        <a class="logo" href="{{url_for('home')}}">
+            <h2>Blogga &#124;</h2>
+        </a>
         {% endif %}
         <nav>
             <ul class="nav_links">
@@ -37,7 +37,7 @@
                 <li><a href="{{ url_for('about') }}">About</a></li>
                 <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-                <li><a href="#" id="profile-link"><img src="profile-pic.jpg" alt="Profile" id="dash-profile-pic"></a></li>
+                <li><a href="{{ url_for('dashboard', id=current_user.id) }}">Dashboard</a></li>
                 {% else %}
                 <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('about') }}">About</a></li>

@@ -33,24 +33,33 @@ Create Post
 
         <form action="{{ url_for('create_post') }}" method="POST">
             <div class="message-data">
-
+                {{ form.csrf_token }}
                 <div class="title-box">
-                    <span class="message-details">Caption</span>
-                    <textarea class="input-control" name="caption" id="caption" placeholder="Create a Caption"
-                        required></textarea>
+                    <!-- <span class="message-details">Caption</span> -->
+                    {{ form.caption.label(class="message-details") }}
+                    <!-- <textarea class="input-control" name="caption" id="caption" placeholder="Create a Caption"
+                        required></textarea> -->
+                    <!-- <textarea {{ form.caption(class="input-control" , id="caption" , placeholder="Create a Caption" )
+                        }}</textarea> -->
+                    {{ form.caption(class="input-control") }}
                 </div>
 
                 <div class="message-box">
-                    <span class="message-details">Content</span>
+                    <!-- <span class="message-details">Content</span> -->
+                    {{ form.content.label(class="message-details") }}
 
-                    <textarea class="input-control" name="content" id="content" placeholder="Enter your Message"
-                        required></textarea>
+                    <textarea {{ form.content(class="input-control", id="content", placeholder="Enter your Message") }}</textarea>
+                    <!-- {{ form.content(class="input-control") }} -->
+                    
                 </div>
             </div>
             <div class="button">
-                <input class="message-btn" type="submit" value="Post">
+                <!-- <input class="message-btn" type="submit" value="Post"> -->
+                {{ form.submit() }}
             </div>
         </form>
+        {{ ckeditor.load() }}
+        {{ ckeditor.config(name='content') }}
     </div>
 </section>
 {% endblock %}

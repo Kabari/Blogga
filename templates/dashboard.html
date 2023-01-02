@@ -1,10 +1,62 @@
 {% extends 'base.html' %}
 
+
 {% block title %}
 Dashboard
 {% endblock %}
 
-{% block content %}
-    <h1>Dashboard</h1>
-{% endblock %}
 
+{% block content %}
+
+<body class="board">
+    <section class="dashboard-section">
+
+        <div class="dashboard-title">
+            <h1>Dashboard</h1>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                {{ current_user.firstname }} {{ current_user.lastname }}
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Welcome to Your User Dashboard...</h4>
+                <p class="card-text">
+                    <strong>Name: </strong>{{ current_user.firstname }} {{ current_user.lastname }}<br>
+                    <strong>Username: </strong>{{ current_user.username }}<br>
+                    <strong>Email: </strong>{{ current_user.email }}<br>
+                </p>
+                <!-- <a href="{{ url_for('logout') }}" class="btn">Logout</a> -->
+                <div class="logout-button">
+                    <a href="{{url_for('logout')}}"><input class="logout-btn" id="logout-btn" type="submit"
+                            value="Logout"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dashboard-section">
+
+        <div class="dashboard-title">
+            <h1>My Posts</h1>
+        </div>
+        {% if current_user.is_authenticated %}
+        <div class="card-post">
+            {% for post in posts %}
+            <div class="card-body-card">
+                <a href="{{ url_for('view_post', id=post.id) }}">
+                <h4 class="card-title">Welcome to Your User Dashboard...</h4>
+                <p class="card-text">
+                    <strong>Name: </strong>{{ post.caption }} <br>
+                </p>
+                </a>
+            {% endfor %}
+            </div>
+        </div>
+
+        {% endif %}
+    </section>
+</body>
+
+
+{% endblock %}

@@ -68,19 +68,96 @@ header {
     color: #0088a9;
 }
 
-#profile-link {
-    display: flex;
-    align-items: center;
-    border: 1px solid red;
+/* navigation config end */
+
+/* dashboard config */
+.board {
+    background-color: #d8e1f2;
 }
 
-#dash-profile-pic {
-    border-radius: 50%;
-    width: 50px;
-    border: 1px solid red;
-    height: 50px;
+.dashboard-section {
+    margin: 0px 80px;
 }
-/* navigation config end */
+
+.dashboard-title {
+    justify-content: flex-start;
+    border-radius: 5px;
+}
+
+.dashboard-title h1 {
+    margin: 20px auto;
+    font-size: 40px;
+}
+
+.card {
+    background-color: #24252A;
+    margin: 30px auto;
+    border-radius: 10px;
+}
+
+.card-header {
+    height: 30px;
+    border-radius: 5px;
+    background-color: #ced4da;
+    padding: 5px;
+}
+
+.card-body {
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 5px 0px;
+}
+
+.card-body-card {
+    padding: 10px 0px;
+    background-color: #e9f4fb;
+    border-radius: 20px;
+    margin: 20px 0px;
+}
+
+.card-body-card a {
+    color: #0088a9;
+
+}
+
+
+.card-title {
+    padding: 15px 10px;
+    font-size: 30px;
+}
+
+.card-text {
+    font-size: 20px;
+    line-height: 30px;
+    padding: 0px 10px;
+}
+
+.logout-button {
+    display: flex;
+    justify-content: flex-start;
+}
+
+input[class="logout-btn"] {
+    margin: 10px 10px;
+    justify-content: flex-start;
+    width: 20px;
+    height: 40px;
+    border: 1px solid;
+    background: #2691d9;
+    border-radius: 10px;
+    font-size: 18px;
+    color: #e9f4fb;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+}
+
+input[class="logout-btn"]:hover {
+    border-color: #2691d9;
+    transition: .5s;
+}
+
+/* dashboard config end */
 
 /* alert config */
 /* The alert message box */
@@ -110,6 +187,7 @@ header {
 .closebtn:hover {
     color: black;
 }
+
 /* alert config end */
 
 
@@ -400,7 +478,7 @@ input[class="btn-1"]:hover {
     font-size: 50px;
 }
 
-.no-post-title a{
+.no-post-title a {
     color: #0088a9;
 }
 
@@ -639,7 +717,7 @@ input[class="message-btn"]:hover {
     height: 70px;
     display: flex;
     margin: auto;
-    margin-bottom: 20px;    
+    margin-bottom: 20px;
 }
 
 .button {
@@ -725,11 +803,13 @@ input[id="message-btn"] {
 .profile-pic-box {
     width: 300px;
 }
+
 .profile-pic-box img {
     width: 100%;
     height: 100%;
     border-radius: 200px;
 }
+
 /* About config end */
 
 
@@ -749,7 +829,7 @@ input[id="message-btn"] {
 
 .footer-container {
     margin: 50px auto;
-} 
+}
 
 .footer-list-inline {
     display: flex;
@@ -783,4 +863,5 @@ i {
     /* color: none; */
 
 }
+
 /* Footer config end */
