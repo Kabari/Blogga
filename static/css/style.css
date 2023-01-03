@@ -12,6 +12,7 @@ font-family: 'Raleway', sans-serif;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Lato';
+    scroll-behavior: smooth;
 }
 
 /* Global config end*/
@@ -33,6 +34,8 @@ header {
     align-items: center;
     padding: 5px 5%;
     background-color: #24252A;
+    position: sticky;
+    top: 0;
 }
 
 .logo {
@@ -99,27 +102,31 @@ header {
     height: 30px;
     border-radius: 5px;
     background-color: #ced4da;
-    padding: 5px;
+    padding: 2px;
+    margin: 3px 0px;
 }
 
 .card-body {
     background-color: #fff;
     border-radius: 5px;
-    margin: 5px 0px;
+    margin: 1px 0px;
 }
 
 .card-body-card {
     padding: 10px 0px;
     background-color: #e9f4fb;
-    border-radius: 20px;
-    margin: 20px 0px;
+    border-radius: 10px;
+    margin: 10px 0px;
+    border: 1px solid #a6a6a6;
 }
 
 .card-body-card a {
-    color: #0088a9;
-
+    color: #1b282b;
 }
 
+.card-body-card a:hover {
+    color: #0088a9;
+}
 
 .card-title {
     padding: 15px 10px;

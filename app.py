@@ -18,7 +18,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///' + \
     os.path.join(base_dir, 'blogga.db')
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = '368a9fb9cbe27df3ac61bd23'
-app.config['CKEDITOR_PKG_TYPE'] = 'standard'
+app.config['CKEDITOR_PKG_TYPE'] = 'full-all'
 
 
 ckeditor = CKEditor(app)
@@ -169,32 +169,10 @@ def create_post():
 @app.route('/blogposts/post/edit_post/<int:id>/', methods=['GET', 'POST'])
 @login_required
 def edit_post(id):
-    # post_to_edit = BlogPost.query.get_or_404(id)
-
-    # if request.method == 'POST':
-    #     post_to_edit.caption = request.form.get('caption')
-    #     post_to_edit.content = request.form.get('content')
-
-    #     db.session.add(post_to_edit)
-    #     db.session.commit()
-
-    #     flash("Post Updated!")
-    #     return redirect(url_for('view_post', id=id))
-
-    # if current_user.id == post_to_edit.owner_id:
-    #     post_to_edit.caption = post_to_edit.caption
-    #     post_to_edit.content = post_to_edit.content
-    #     return render_template('edit_post.html', post=post_to_edit)
-
-    # else:
-    #     flash("You do not have the previledge to edit this post")
-    #     post = BlogPost.query.get_or_404(id)
-
-    #     return render_template('post.html', post=post)
 
     post = BlogPost.query.get_or_404(id)
     form = CreatePostForm(caption=post.caption,
-                               content=post.content, owner=current_user)
+                            content=post.content, owner=current_user)
 
     if form.validate_on_submit():
         post.caption = form.caption.data
@@ -248,14 +226,14 @@ def about():
 
     return render_template('about.html')
 
+
 # Dashboard page
-
-
 @app.route("/dashboard/<int:id>")
 @login_required
 def dashboard(id):
     user = User.query.filter_by(id=id).first()
     if current_user.id == user.id:
         users_id = user.id
-        posts = BlogPost.query.filter_by(owner_id=users_id).all()
+        posts = BlogPost.query.filter_by(owner_id=users_id).order_by(
+            desc(BlogPost.date_created)).all()
     return render_template("dashboard.html", posts=posts)

@@ -17,7 +17,7 @@ Dashboard
 
         <div class="card">
             <div class="card-header">
-                {{ current_user.firstname }} {{ current_user.lastname }}
+                <h2>Your Information</h2>
             </div>
             <div class="card-body">
                 <h4 class="card-title">Welcome to Your User Dashboard...</h4>
@@ -41,18 +41,18 @@ Dashboard
             <h1>My Posts</h1>
         </div>
         {% if current_user.is_authenticated %}
-        <div class="card-post">
             {% for post in posts %}
+        <div class="card-post">
             <div class="card-body-card">
                 <a href="{{ url_for('view_post', id=post.id) }}">
-                <h4 class="card-title">Welcome to Your User Dashboard...</h4>
+                <h4 class="card-title">{{ post.caption }}</h4>
                 <p class="card-text">
-                    <strong>Name: </strong>{{ post.caption }} <br>
+                    Posted on {{post.date_created.strftime('%d %B, %Y')}}
                 </p>
                 </a>
-            {% endfor %}
             </div>
         </div>
+            {% endfor %}
 
         {% endif %}
     </section>
