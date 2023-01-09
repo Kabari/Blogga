@@ -13,27 +13,24 @@
 
                 {{ form.csrf_token }}
                 <div class="title-box">
-                    <!-- <span class="message-details">Caption</span> -->
                     {{ form.caption.label(class="message-details") }}
                     <!-- <textarea class="input-control" name="caption" id="caption" placeholder="Create a Caption"
                                         required></textarea> -->
                     <!-- <textarea {{ form.caption(class="input-control" , id="caption" , placeholder="Create a Caption" )
                                         }}</textarea> -->
-                    {{ form.caption(class="input-control") }}
+                    {{ form.caption(class="input-control", id="caption" , placeholder="Create a Caption") }}
                 </div>
                 
                 <div class="message-box">
-                    <!-- <span class="message-details">Content</span> -->
                     {{ form.content.label(class="message-details") }}
                 
                     <textarea {{ form.content(class="input-control" , id="content" , placeholder="Enter your Message" ) }}</textarea>
-                                    <!-- {{ form.content(class="input-control") }} -->
                                     
-                                </div>
-                            </div>
-                            <div class="button">
-                                <!-- <input class="message-btn" type="submit" value="Post"> -->
-                                {{ form.submit(value="Update") }}
+                </div>
+            </div>
+            <div class="button">
+                {{ form.submit(value="Update") }}
+            </div>
         </form>
         {{ ckeditor.load() }}
         {{ ckeditor.config(name='content') }}

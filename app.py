@@ -18,7 +18,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///' + \
     os.path.join(base_dir, 'blogga.db')
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = '368a9fb9cbe27df3ac61bd23'
-app.config['CKEDITOR_PKG_TYPE'] = 'full-all'
+app.config['CKEDITOR_PKG_TYPE'] = 'full'
 
 
 ckeditor = CKEditor(app)
@@ -172,7 +172,7 @@ def edit_post(id):
 
     post = BlogPost.query.get_or_404(id)
     form = CreatePostForm(caption=post.caption,
-                            content=post.content, owner=current_user)
+                          content=post.content, owner=current_user)
 
     if form.validate_on_submit():
         post.caption = form.caption.data
