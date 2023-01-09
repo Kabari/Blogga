@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+
+{% block content %}
+
+<body class="board">
+    <section class="dashboard-section">
+
+        <div class="dashboard-title">
+            <h1>Dashboard</h1>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2>Your Information</h2>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Welcome to Your User Dashboard...</h4>
+                <p class="card-text">
+                    <strong>Name: </strong>{{ current_user.firstname }} {{ current_user.lastname }}<br>
+                    <strong>Username: </strong>{{ current_user.username }}<br>
+                    <strong>Email: </strong>{{ current_user.email }}<br>
+                </p>
+                <div class="logout-button">
+                    <a href="{{url_for('logout')}}"><input class="logout-btn" id="logout-btn" type="submit"
+                            value="Logout"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dashboard-section">
+
+        <div class="dashboard-title">
+            <h1>My Posts</h1>
+        </div>
+        {% if current_user.is_authenticated %}
+            {% for post in posts %}
+        <div class="card-post">
+            <div class="card-body-card">
+                <a href="{{ url_for('view_post', id=post.id) }}">
+                <h4 class="card-title">{{ post.caption }}</h4>
+                <p class="card-text">
+                    Posted on {{post.date_created.strftime('%d %B, %Y')}}
+                </p>
+                </a>
+            </div>
+        </div>
+            {% endfor %}
+
+        {% endif %}
+    </section>
+</body>
+
+
+{% endblock %}

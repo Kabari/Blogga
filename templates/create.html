@@ -6,51 +6,32 @@ Create Post
 
 {% block content %}
 
-
-
-<!-- <section class="signup_section">
-    <div class="signup-container">
-        <h1>Create Post</h1>
-        <form action="{{ url_for('create_post') }}" method="POST">
-            <div class="text_field">
-                <input type="text" name="caption" required>
-                <span></span>
-                <label for="caption">Caption</label>
-            </div>
-            <div class="text_field">
-                <input type="text" name="content" required>
-                <span></span>
-                <label for="content">Content</label>
-            </div>
-            <input type="submit" name="" id="" value="Create Post">
-        </form>
-    </div>
-</section> -->
-
 <section class="message-section">
     <div class="message-container">
         <div class="message-title">Create Post</div>
 
         <form action="{{ url_for('create_post') }}" method="POST">
             <div class="message-data">
-
+                {{ form.csrf_token }}
                 <div class="title-box">
-                    <span class="message-details">Caption</span>
-                    <textarea class="input-control" name="caption" id="caption" placeholder="Create a Caption"
-                        required></textarea>
+                    {{ form.caption.label(class="message-details") }}
+
+                    <textarea {{ form.caption(class="input-control", id="caption" , placeholder="Create a Caption") }}</textarea>
                 </div>
 
                 <div class="message-box">
-                    <span class="message-details">Content</span>
+                    {{ form.content.label(class="message-details") }}
 
-                    <textarea class="input-control" name="content" id="content" placeholder="Enter your Message"
-                        required></textarea>
+                    <textarea {{ form.content(class="input-control", id="content", placeholder="Enter your Message") }}</textarea>
+                    
                 </div>
             </div>
             <div class="button">
-                <input class="message-btn" type="submit" value="Post">
+                {{ form.submit() }}
             </div>
         </form>
+        {{ ckeditor.load() }}
+        {{ ckeditor.config(name='content') }}
     </div>
 </section>
 {% endblock %}
