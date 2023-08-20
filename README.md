@@ -136,19 +136,23 @@ Python3: [Get Python](https://www.python.org/downloads/)
    ```sh
    git clone https://github.com/Kabari/Blogga.git
    ```
-2. Activate the virtual environment
+2. Enter into the cloned folder
+   ```sh
+   cd Blogga
+   ```
+3. Activate the virtual environment
    ```sh
    venv/Scripts/activate
    ```
-3. Install project packages
+4. Install project packages
    ```sh
    pip install -r requirements.txt
    ```
-4. Run Flask
+5. Run Flask
    ```sh
    flask run
    ```
-5. Open the link generated in the terminal on a browser
+6. Open the link generated in the terminal on a browser
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
